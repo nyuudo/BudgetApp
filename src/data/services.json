@@ -1,0 +1,7 @@
+[
+  { "id": 0, "label": "Una página web", "fee": 500 },
+  { "id": 1, "label": "Una consultoría SEO", "fee": 300 },
+  { "id": 2, "label": "Una campaña de Google Ads", "fee": 200 },
+  { "id": 3, "label": "Número de páginas", "fee": 30 },
+  { "id": 4, "label": "Número de idiomas", "fee": 30 }
+]
