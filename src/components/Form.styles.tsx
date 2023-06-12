@@ -48,28 +48,58 @@ export const StyledCheckbox = styled.form`
   }
 `;
 
-export const StyledDropdown = styled.form`
+export const StyledInputExtras = styled.form`
   padding-left: 20px;
   color: #8395a7;
   font-size: 0.9rem;
-  transition-duration: 0.4s;
+
+  button {
+    background: none;
+    border: none;
+    fill: #0a3d62;
+    vertical-align: middle;
+    transition-duration: 0.4s;
+  }
+
+  button:hover {
+    fill: #e55039;
+  }
 
   input {
     width: 64px;
-    margin: 4px;
+    margin: 0px;
+  }
+
+  input::placeholder {
+    color: #e55039;
   }
 `;
 
-/* .checkbox-wrapper input[type="checkbox"] {
-  removing default appearance
-  -webkit-appearance: none;
-  appearance: none;
-  creating a custom design
-  width: 1.6em;
-  height: 1.6em;
-  border-radius: 0.15em;
-  margin-right: 0.5em;
-  border: 0.15em solid #007a7e;
-  outline: none;
-  cursor: pointer;
-} */
+export const StyledWelcome = styled.div`
+  position: relative;
+  max-width: 50vh;
+  font-family: "Exo 2", sans-serif;
+  border-radius: 16px;
+  padding: 32px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+
+  h1 {
+    color: #0a3d62;
+  }
+  p {
+    margin: 16px, 16px, 32px, 0px;
+  }
+  a {
+    border-radius: 4px;
+    padding: 8px;
+    color: #e0e0e0;
+    background-color: #0a3d62;
+    text-decoration: none;
+    transition-duration: 0.4s;
+  }
+
+  a:hover {
+    background-color: #e55039;
+  }
+`;
