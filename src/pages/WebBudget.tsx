@@ -9,27 +9,17 @@ function WebBudget() {
   // DEFINE STATES
   // State for Total Budget Fee
   //const [totalFee, setTotalFee] = useState(0);
-
-  // Using customHook
-  const [totalFee, setTotalFee] = useLocalStorage("totalFee", 0);
-
-  //  Updated State for Total Budget Fee and useEffect applied to localStorage
-  /*   const [totalFee, setTotalFee] = useState(() => {
-    const savedState = localStorage.getItem("totalFee") || "";
-    const totalFee = JSON.parse(savedState);
-    return totalFee;
-  });
-
-  useEffect(() => {
-    localStorage.setItem("totalFee", JSON.stringify(totalFee));
-  }, [totalFee]); */
-
   // State for Budget figures
-  const [budgetFee, setBudgetFee] = useState(0);
-
+  //const [budgetFee, setBudgetFee] = useState(0);
   // States for Extras (pages and languages)
-  const [numberPages, setNumberPages] = useState(0);
-  const [numberLang, setNumberLang] = useState(0);
+  //const [numberPages, setNumberPages] = useState(0);
+  //const [numberLang, setNumberLang] = useState(0);
+
+  // STATES but this time UPDATED with a custom Hook to use localStorage
+  const [totalFee, setTotalFee] = useLocalStorage("totalFee", 0);
+  const [budgetFee, setBudgetFee] = useLocalStorage("budgetFee", 0);
+  const [numberPages, setNumberPages] = useLocalStorage("numberPages", 0);
+  const [numberLang, setNumberLang] = useLocalStorage("numberLang", 0);
 
   // State for Checkboxes
   const [checkBoxState, setCheckBoxState] = useState(
@@ -117,6 +107,11 @@ function WebBudget() {
     }
   };
 
+  const notify = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log("Ésta es una info extra");
+  };
+
   return (
     <StyledBackground>
       <StyledForm>
@@ -148,6 +143,7 @@ function WebBudget() {
                     handleIncrement={handleIncrement}
                     // pass a prop as a conditional value to calculate
                     value={extra.extraid === "pag" ? numberPages : numberLang}
+                    infoExtra={notify}
                     //
                   />
                 ))}

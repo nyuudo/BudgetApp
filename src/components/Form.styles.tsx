@@ -73,6 +73,21 @@ export const StyledInputExtras = styled.form`
   input::placeholder {
     color: #e55039;
   }
+
+  .info {
+    fill: #60a3bc;
+  }
+
+  .info:hover {
+    fill: #0a3d62;
+  }
+
+  /*   .ExtrasPopup {
+    border-radius: 8px;
+    height: auto;
+    width: 300px;
+    align-items: center;
+  } */
 `;
 
 export const StyledWelcome = styled.div`
