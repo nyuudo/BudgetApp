@@ -1,0 +1,29 @@
+[
+  {
+    "id": 0,
+    "label": "Una página web",
+    "fee": 500,
+    "extras": [
+      {
+        "extraid": "pag",
+        "extralabel": "Número de páginas",
+        "extrafee": 30
+      },
+      {
+        "extraid": "lang",
+        "extralabel": "Número de idiomas",
+        "extrafee": 30
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "label": "Una consultoría SEO",
+    "fee": 300
+  },
+  {
+    "id": 2,
+    "label": "Una campaña de Google Ads",
+    "fee": 200
+  }
+]
