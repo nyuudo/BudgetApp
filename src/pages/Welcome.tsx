@@ -1,18 +1,18 @@
-import { StyledBackground, StyledWelcome } from "../components/Form.styles";
+import { StyledBackground, StyledWelcome } from "../components/App.styles";
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
   return (
     <StyledBackground>
       <StyledWelcome>
-        <h1>Presupuesto</h1>
+        <h1>Budget Calculator</h1>
         <p>
-          Si necesitas <strong>servicios web,</strong> a continuación
-          encontrarás una lista de diferentes opciones disponibles y que puedes
-          seleccionar, de acuerdo a tus necesidades 😉
+          If You have a particular <strong>web project</strong> in mind, and You
+          don't have a clear idea of the costs involved in the development, this
+          tool could help You to figure it out.
         </p>
         <br />
-        <Link to="/budget">DESCUBRE CÓMO</Link>
+        <Link to="/budget">FIND HOW</Link>
       </StyledWelcome>
     </StyledBackground>
   );

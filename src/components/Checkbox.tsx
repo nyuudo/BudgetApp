@@ -1,12 +1,5 @@
-import { StyledCheckbox } from "./Form.styles";
-
-//Define types for props
-type CheckBoxProps = {
-  label: string;
-  fee: number;
-  checkboxSelectedId: (id: number, checked: boolean) => void;
-  id: number;
-};
+import { StyledCheckbox } from "./App.styles";
+import { CheckBoxProps } from "../types";
 
 const Checkbox = ({ label, fee, checkboxSelectedId, id }: CheckBoxProps) => {
   return (
@@ -14,7 +7,6 @@ const Checkbox = ({ label, fee, checkboxSelectedId, id }: CheckBoxProps) => {
       <input
         type="checkbox"
         onChange={(e) => checkboxSelectedId(id, e.target.checked)}
-        //onChange={(e) => console.log(e.target.checked)}
       />
       <label>
         {label} <strong>({fee}€)</strong>

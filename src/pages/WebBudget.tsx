@@ -1,20 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import services from "../data/services.json";
 import Checkbox from "../components/Checkbox";
 import InputExtras from "../components/Inputextras";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { StyledBackground, StyledForm } from "../components/Form.styles";
+import { StyledBackground, StyledForm } from "../components/App.styles";
 
 function WebBudget() {
-  // DEFINE STATES
-  // State for Total Budget Fee
-  //const [totalFee, setTotalFee] = useState(0);
-  // State for Budget figures
-  //const [budgetFee, setBudgetFee] = useState(0);
-  // States for Extras (pages and languages)
-  //const [numberPages, setNumberPages] = useState(0);
-  //const [numberLang, setNumberLang] = useState(0);
-
   // STATES but this time UPDATED with a custom Hook to use localStorage
   const [totalFee, setTotalFee] = useLocalStorage("totalFee", 0);
   const [budgetFee, setBudgetFee] = useLocalStorage("budgetFee", 0);
@@ -27,17 +18,17 @@ function WebBudget() {
   );
 
   // Calculation of Fees (including extras)
-  const calculateTotalFee = () => {
+  const calculateTotalFee = useCallback(() => {
     const extrasPag = numberPages * 30;
     const extrasLang = numberLang * 30;
     const totalFee = extrasPag + extrasLang + budgetFee;
     setTotalFee(totalFee);
-  };
+  }, [numberPages, numberLang, budgetFee, setTotalFee]);
 
   // Apply useEffect (works fine, still throw warning message: missing dependency "calculateTotalFee")
   useEffect(() => {
     calculateTotalFee();
-  }, [numberPages, numberLang, checkBoxState]);
+  }, [numberPages, numberLang, checkBoxState, calculateTotalFee]);
 
   // Checkbox events
   const checkboxSelectedId = (i: number, checked: boolean) => {
@@ -67,11 +58,9 @@ function WebBudget() {
   // HandleChange in State of Inputextras
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.id === "pag") {
-      console.log(`El valor de ${e.target.id} es ${e.target.value}`);
       return setNumberPages(parseInt(e.target.value));
     }
     if (e.target.id === "lang") {
-      console.log(`El valor de ${e.target.id} es ${e.target.value}`);
       return setNumberLang(parseInt(e.target.value));
     }
   };
@@ -84,11 +73,9 @@ function WebBudget() {
     e.preventDefault();
     if (extraid === "pag" && numberPages > 0) {
       setNumberPages((numberPages) => numberPages - 1);
-      console.log(`Está restando páginas`);
     }
     if (extraid === "lang" && numberLang > 0) {
       setNumberLang((numberLang) => numberLang - 1);
-      console.log(`Está restando idiomas`);
     }
   };
 
@@ -99,23 +86,20 @@ function WebBudget() {
     e.preventDefault();
     if (extraid === "pag") {
       setNumberPages((numberPages) => numberPages + 1);
-      console.log(`Está sumando páginas`);
     }
     if (extraid === "lang") {
       setNumberLang((numberLang) => numberLang + 1);
-      console.log(`Está sumando idiomas`);
     }
   };
 
   const notify = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("Ésta es una info extra");
   };
 
   return (
     <StyledBackground>
       <StyledForm>
-        <h1>¿Qué quieres hacer?</h1>
+        <h1>What's Your project?</h1>
         {services.map((item, index) => (
           //identify the main div as index
           <div key={index}>
@@ -152,7 +136,7 @@ function WebBudget() {
         ))}
         <hr />
         <h2>
-          Precio Total: <span>{totalFee}€</span>
+          Total Fee: <span>{totalFee}€</span>
         </h2>
       </StyledForm>
     </StyledBackground>
