@@ -19,10 +19,33 @@ export type InputExtrasProps = {
     extraid: string
   ) => void;
   value: number;
-  infoExtra: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
 export type LocalStorageValue = [
   number,
   React.Dispatch<React.SetStateAction<number>>
 ];
+
+export type BudgetContextType = {
+  totalFee: number;
+  numberPages: number;
+  numberLang: number;
+  checkBoxState: boolean[];
+  setCheckBoxState: React.Dispatch<React.SetStateAction<boolean[]>>;
+  checkboxSelectedId: (i: number, checked: boolean) => void;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDecrement: (
+    e: React.MouseEvent<HTMLButtonElement>,
+    extraid: string
+  ) => void;
+  handleIncrement: (
+    e: React.MouseEvent<HTMLButtonElement>,
+    extraid: string
+  ) => void;
+};
+
+export type ContextProviderProps = {
+  children: React.ReactNode;
+};
+
+export type InfoProps = { activeInfo: string };

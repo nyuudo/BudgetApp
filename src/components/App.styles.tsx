@@ -63,12 +63,18 @@ export const StyledInputExtras = styled.form`
   button {
     background: none;
     border: none;
-    vertical-align: middle;
+  }
+
+  label {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
   }
 
   input {
+    height: auto;
     width: 64px;
-    margin: 0px;
+    margin: 4px 0px;
   }
 
   input::placeholder {
@@ -76,11 +82,30 @@ export const StyledInputExtras = styled.form`
   }
 
   .info {
-    fill: ${colors.secondary};
-  }
+    position: relative;
+    margin-left: 0.5rem;
 
-  .info:hover {
-    fill: ${colors.primary};
+    &::before {
+      position: absolute;
+      display: none;
+      min-width: 122px;
+      background-color: ${colors.primary};
+      color: white;
+      padding: 8px;
+      border-radius: 4px;
+      z-index: 1;
+      left: 150%;
+      bottom: -25%;
+      content: "Here indicate the number of pages in your web project";
+      font-size: 0.65rem;
+      font-family: "Signika", sans-serif;
+      font-weight: 300;
+    }
+
+    &:hover::before {
+      display: block;
+      opacity: 50%;
+    }
   }
 `;
 
@@ -88,8 +113,6 @@ export const Icon = styled.span`
   display: inline-block;
   width: 16px;
   height: 16px;
-  background-color: ${colors.tertiary};
-  --svg: url("src/assets/images/info.svg");
   -webkit-mask-image: var(--svg);
   mask-image: var(--svg);
   -webkit-mask-repeat: no-repeat;
@@ -98,8 +121,13 @@ export const Icon = styled.span`
   mask-size: 100% 100%;
   transition-duration: 0.4s;
 
-  &:hover {
-    background-color: ${colors.primary};
+  &.icon--info {
+    --svg: url("src/assets/images/info.svg");
+    background-color: ${colors.tertiary};
+
+    &:hover {
+      background-color: ${colors.primary};
+    }
   }
 
   &.icon--minus {
