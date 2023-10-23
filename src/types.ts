@@ -48,4 +48,4 @@ export type ContextProviderProps = {
   children: React.ReactNode;
 };
 
-export type InfoProps = { activeInfo: string };
+export type InfoProps = { infoId: string };

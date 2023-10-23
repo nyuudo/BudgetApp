@@ -16,7 +16,6 @@ const WebBudget = () => {
     handleChange,
     handleDecrement,
     handleIncrement,
-    infoExtra,
   } = useContext(BudgetContext);
 
   return (
@@ -49,8 +48,7 @@ const WebBudget = () => {
                     handleDecrement={handleDecrement}
                     handleIncrement={handleIncrement}
                     // pass a prop as a conditional value to calculate
-                    value={extra.extraid === "pag" ? numberPages : numberLang}
-                    infoExtra={infoExtra}
+                    value={extra.extraid === "pages" ? numberPages : numberLang}
                     //
                   />
                 ))}

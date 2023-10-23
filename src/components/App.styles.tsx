@@ -1,5 +1,5 @@
-// import styled components libraries
 import styled from "styled-components";
+import type { InfoProps } from "../types";
 
 const colors = {
   primary: "#0a3d62",
@@ -55,7 +55,7 @@ export const StyledCheckbox = styled.form`
   }
 `;
 
-export const StyledInputExtras = styled.form`
+export const StyledInputExtras = styled.form<InfoProps>`
   padding-left: 20px;
   color: ${colors.tertiary};
   font-size: 0.9rem;
@@ -88,7 +88,7 @@ export const StyledInputExtras = styled.form`
     &::before {
       position: absolute;
       display: none;
-      min-width: 122px;
+      min-width: 114px;
       background-color: ${colors.primary};
       color: white;
       padding: 8px;
@@ -96,13 +96,31 @@ export const StyledInputExtras = styled.form`
       z-index: 1;
       left: 150%;
       bottom: -25%;
-      content: "Here indicate the number of pages in your web project";
+      content: "${({ infoId }) =>
+        `Here indicate the number of ${infoId} in your web`}";
       font-size: 0.65rem;
       font-family: "Signika", sans-serif;
       font-weight: 300;
     }
 
     &:hover::before {
+      display: block;
+      opacity: 50%;
+    }
+
+    &::after {
+      content: "";
+      display: none;
+      position: absolute;
+      top: 30%;
+      left: 14px;
+      transform: translateY(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent ${colors.primary} transparent transparent;
+    }
+
+    &:hover::after {
       display: block;
       opacity: 50%;
     }

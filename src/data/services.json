@@ -5,12 +5,12 @@
     "fee": 500,
     "extras": [
       {
-        "extraid": "pag",
+        "extraid": "pages",
         "extralabel": "Number of pages",
         "extrafee": 30
       },
       {
-        "extraid": "lang",
+        "extraid": "languages",
         "extralabel": "Number of langs",
         "extrafee": 30
       }

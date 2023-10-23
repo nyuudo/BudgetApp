@@ -58,10 +58,10 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.id === "pag") {
+    if (e.target.id === "pages") {
       return setNumberPages(parseInt(e.target.value));
     }
-    if (e.target.id === "lang") {
+    if (e.target.id === "languages") {
       return setNumberLang(parseInt(e.target.value));
     }
   };
@@ -71,10 +71,10 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
     extraid: string
   ) => {
     e.preventDefault();
-    if (extraid === "pag" && numberPages > 0) {
+    if (extraid === "pages" && numberPages > 0) {
       setNumberPages((numberPages) => numberPages - 1);
     }
-    if (extraid === "lang" && numberLang > 0) {
+    if (extraid === "languages" && numberLang > 0) {
       setNumberLang((numberLang) => numberLang - 1);
     }
   };
@@ -84,10 +84,10 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
     extraid: string
   ) => {
     e.preventDefault();
-    if (extraid === "pag") {
+    if (extraid === "pages") {
       setNumberPages((numberPages) => numberPages + 1);
     }
-    if (extraid === "lang") {
+    if (extraid === "languages") {
       setNumberLang((numberLang) => numberLang + 1);
     }
   };

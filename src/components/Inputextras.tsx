@@ -11,7 +11,7 @@ const InputExtras = ({
   value,
 }: InputExtrasProps) => {
   return (
-    <StyledInputExtras>
+    <StyledInputExtras infoId={extraid}>
       <label>
         {extralabel}
         <button onClick={(e) => handleDecrement(e, extraid)}>
