@@ -18,11 +18,41 @@ export const StyledBackground = styled.div`
   background-color: #e0e0e0;
 `;
 
+export const StyledWelcome = styled.section`
+  position: relative;
+  max-width: 50vh;
+  font-family: "Signika", sans-serif;
+  border-radius: 16px;
+  padding: 32px;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+
+  h1 {
+    color: ${colors.primary};
+  }
+  p {
+    margin: 16px, 16px, 32px, 0px;
+  }
+  a {
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 0.75rem;
+    color: #e0e0e0;
+    background-color: ${colors.primary};
+    text-decoration: none;
+    transition-duration: 0.4s;
+  }
+
+  a:hover {
+    background-color: ${colors.danger};
+  }
+`;
+
 export const StyledForm = styled.div`
   position: relative;
   font-family: "Signika", sans-serif;
   border-radius: 16px;
-  padding: 32px;
+  padding: 16px 32px;
   background: #e0e0e0;
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
 
@@ -44,7 +74,7 @@ export const StyledForm = styled.div`
   }
 `;
 
-export const StyledCheckbox = styled.form`
+export const StyledCheckbox = styled.div`
   color: ${colors.primary};
   font-size: 1rem;
   line-height: 1.75rem;
@@ -75,9 +105,10 @@ export const StyledInputExtras = styled.form<InfoProps>`
     height: auto;
     width: 64px;
     margin: 4px 0px;
+    border-style: none;
   }
 
-  input::placeholder {
+  input:placeholder {
     color: ${colors.danger};
   }
 
@@ -85,7 +116,7 @@ export const StyledInputExtras = styled.form<InfoProps>`
     position: relative;
     margin-left: 0.5rem;
 
-    &::before {
+    &:before {
       position: absolute;
       display: none;
       min-width: 114px;
@@ -96,19 +127,19 @@ export const StyledInputExtras = styled.form<InfoProps>`
       z-index: 1;
       left: 150%;
       bottom: -25%;
-      content: "${({ infoId }) =>
-        `Here indicate the number of ${infoId} in your web`}";
+      content: "${({ infoid }) =>
+        `Here indicate the number of ${infoid} in your web`}";
       font-size: 0.65rem;
       font-family: "Signika", sans-serif;
       font-weight: 300;
     }
 
-    &:hover::before {
+    &:hover:before {
       display: block;
       opacity: 50%;
     }
 
-    &::after {
+    &:after {
       content: "";
       display: none;
       position: absolute;
@@ -120,10 +151,42 @@ export const StyledInputExtras = styled.form<InfoProps>`
       border-color: transparent ${colors.primary} transparent transparent;
     }
 
-    &:hover::after {
+    &:hover:after {
       display: block;
       opacity: 50%;
     }
+  }
+`;
+
+export const SaveBudget = styled.div`
+  padding: 16px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  input {
+    padding-left: 4px;
+    border-radius: 4px;
+    border-style: none;
+    font-size: 1rem;
+    transition: border-color 0.5s ease-out;
+    height: auto;
+  }
+
+  button {
+    border-style: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-family: "Signika", sans-serif;
+    font-size: 0.75rem;
+    color: #e0e0e0;
+    background-color: ${colors.primary};
+    text-decoration: none;
+    transition-duration: 0.4s;
+  }
+
+  button:hover {
+    background-color: ${colors.danger};
   }
 `;
 
@@ -164,35 +227,5 @@ export const Icon = styled.span`
     &:hover {
       background-color: ${colors.danger};
     }
-  }
-`;
-
-export const StyledWelcome = styled.div`
-  position: relative;
-  max-width: 50vh;
-  font-family: "Signika", sans-serif;
-  border-radius: 16px;
-  padding: 32px;
-  background: #e0e0e0;
-  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-
-  h1 {
-    color: ${colors.primary};
-  }
-  p {
-    margin: 16px, 16px, 32px, 0px;
-  }
-  a {
-    border-radius: 4px;
-    padding: 8px 16px;
-    font-size: 0.75rem;
-    color: #e0e0e0;
-    background-color: ${colors.primary};
-    text-decoration: none;
-    transition-duration: 0.4s;
-  }
-
-  a:hover {
-    background-color: ${colors.danger};
   }
 `;

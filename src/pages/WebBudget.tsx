@@ -4,7 +4,11 @@ import { BudgetContext } from "../context/BudgetContext";
 import services from "../data/services.json";
 import Checkbox from "../components/Checkbox";
 import InputExtras from "../components/Inputextras";
-import { StyledBackground, StyledForm } from "../components/App.styles";
+import {
+  StyledBackground,
+  StyledForm,
+  SaveBudget,
+} from "../components/App.styles";
 
 const WebBudget = () => {
   const {
@@ -59,6 +63,12 @@ const WebBudget = () => {
         <h2>
           Total Fee: <span>{totalFee}€</span>
         </h2>
+        <hr />
+        <SaveBudget>
+          <input type="text" placeholder="Budget Name" />
+          <input type="text" placeholder="Customer Name" />
+          <button type="submit">SAVE BUDGET</button>
+        </SaveBudget>
       </StyledForm>
     </StyledBackground>
   );
