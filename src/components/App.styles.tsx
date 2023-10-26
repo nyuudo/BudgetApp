@@ -86,7 +86,6 @@ export const StyledCheckbox = styled.div`
 `;
 
 export const StyledInputExtras = styled.form<InfoProps>`
-  padding-left: 20px;
   color: ${colors.tertiary};
   font-size: 0.9rem;
 
@@ -97,15 +96,17 @@ export const StyledInputExtras = styled.form<InfoProps>`
 
   label {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    align-content: center;
   }
 
   input {
     height: auto;
-    width: 64px;
+    width: 24px;
     margin: 4px 0px;
     border-style: none;
+    font-family: "Signika", sans-serif;
   }
 
   input:placeholder {
@@ -159,7 +160,7 @@ export const StyledInputExtras = styled.form<InfoProps>`
 `;
 
 export const SaveBudget = styled.div`
-  padding: 16px 0px;
+  padding-bottom: 16px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -169,6 +170,8 @@ export const SaveBudget = styled.div`
     border-radius: 4px;
     border-style: none;
     font-size: 1rem;
+    font-family: "Signika", sans-serif;
+    font-weight: 300;
     transition: border-color 0.5s ease-out;
     height: auto;
   }
@@ -187,6 +190,13 @@ export const SaveBudget = styled.div`
 
   button:hover {
     background-color: ${colors.danger};
+  }
+
+  span {
+    display: flex;
+    gap: 4px;
+    font-size: 0.75rem;
+    justify-content: center;
   }
 `;
 
@@ -227,5 +237,10 @@ export const Icon = styled.span`
     &:hover {
       background-color: ${colors.danger};
     }
+  }
+
+  &.icon--error {
+    --svg: url("src/assets/images/error.svg");
+    background-color: ${colors.danger};
   }
 `;

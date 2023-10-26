@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useCallback } from "react";
 import services from "../data/services.json";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import type { ContextProviderProps, BudgetContextType } from "../types";
+import type { ContextProviderProps, BudgetContextType, Budget } from "../types";
 
 export const BudgetContext = createContext<BudgetContextType>({
   totalFee: 0,
@@ -13,6 +13,13 @@ export const BudgetContext = createContext<BudgetContextType>({
   handleChange: () => {},
   handleDecrement: () => {},
   handleIncrement: () => {},
+  handleBudgetSubmit: () => {},
+  budgets: [],
+  budgetName: "",
+  customerName: "",
+  setBudgetName: () => {},
+  setCustomerName: () => {},
+  errorMessage: "",
 });
 
 export const BudgetProvider = ({ children }: ContextProviderProps) => {
@@ -36,6 +43,9 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
     calculateTotalFee();
   }, [numberPages, numberLang, checkBoxState, calculateTotalFee]);
 
+  const [selectedServiceId, setSelectedServiceId] = useState<number | null>(
+    null
+  );
   const checkboxSelectedId = (i: number, checked: boolean) => {
     const currentChecked = checkBoxState.slice();
     currentChecked[i] = checked;
@@ -55,6 +65,7 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
       0
     );
     setBudgetFee(calculateFee);
+    setSelectedServiceId(i);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,6 +103,54 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
     }
   };
 
+  // Budget Management
+  const [budgetName, setBudgetName] = useState("");
+  const [customerName, setCustomerName] = useState("");
+  const [budgets, setBudgets] = useState<Budget[]>([]);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const resetErrorMessage = () => {
+    setErrorMessage("");
+  };
+
+  const handleBudgetSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (selectedServiceId === null) {
+      setErrorMessage("At least one service must be selected");
+      return;
+    }
+
+    if (!budgetName) {
+      setErrorMessage("Name Your budget before saving");
+      return;
+    }
+
+    if (!customerName) {
+      setErrorMessage("Include your name before saving");
+      return;
+    }
+
+    resetErrorMessage();
+
+    const selectedServices = services.filter(
+      (item, index) => checkBoxState[index]
+    );
+    const newBudget: Budget = {
+      budgetName,
+      customerName,
+      services: selectedServices,
+      totalFee,
+      date: new Date(),
+    };
+
+    setBudgets((prevBudgets) => [...prevBudgets, newBudget]);
+    console.log(newBudget);
+
+    setBudgetName("");
+    setCustomerName("");
+  };
+
   return (
     <BudgetContext.Provider
       value={{
@@ -104,6 +163,13 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
         handleChange,
         handleDecrement,
         handleIncrement,
+        handleBudgetSubmit,
+        budgets,
+        budgetName,
+        customerName,
+        setBudgetName,
+        setCustomerName,
+        errorMessage,
       }}
     >
       {children}

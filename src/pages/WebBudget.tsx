@@ -8,6 +8,7 @@ import {
   StyledBackground,
   StyledForm,
   SaveBudget,
+  Icon,
 } from "../components/App.styles";
 
 const WebBudget = () => {
@@ -20,6 +21,12 @@ const WebBudget = () => {
     handleChange,
     handleDecrement,
     handleIncrement,
+    budgetName,
+    customerName,
+    setBudgetName,
+    setCustomerName,
+    handleBudgetSubmit,
+    errorMessage,
   } = useContext(BudgetContext);
 
   return (
@@ -53,7 +60,6 @@ const WebBudget = () => {
                     handleIncrement={handleIncrement}
                     // pass a prop as a conditional value to calculate
                     value={extra.extraid === "pages" ? numberPages : numberLang}
-                    //
                   />
                 ))}
             </span>
@@ -65,9 +71,29 @@ const WebBudget = () => {
         </h2>
         <hr />
         <SaveBudget>
-          <input type="text" placeholder="Budget Name" />
-          <input type="text" placeholder="Customer Name" />
-          <button type="submit">SAVE BUDGET</button>
+          <input
+            type="text"
+            placeholder="Budget Name"
+            value={budgetName}
+            onChange={(e) => setBudgetName(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Customer Name"
+            value={customerName}
+            onChange={(e) => setCustomerName(e.target.value)}
+            required
+          />
+          {errorMessage && (
+            <span>
+              <Icon className="icon icon--error"></Icon>
+              {errorMessage}
+            </span>
+          )}
+          <button type="submit" onClick={handleBudgetSubmit}>
+            SAVE BUDGET
+          </button>
         </SaveBudget>
       </StyledForm>
     </StyledBackground>

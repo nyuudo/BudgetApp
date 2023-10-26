@@ -42,10 +42,38 @@ export type BudgetContextType = {
     e: React.MouseEvent<HTMLButtonElement>,
     extraid: string
   ) => void;
+  budgetName: string;
+  customerName: string;
+  setBudgetName: React.Dispatch<React.SetStateAction<string>>;
+  setCustomerName: React.Dispatch<React.SetStateAction<string>>;
+  handleBudgetSubmit: (e: React.FormEvent) => void;
+  budgets: Budget[];
+  errorMessage: string;
 };
 
 export type ContextProviderProps = {
   children: React.ReactNode;
 };
 
-export type InfoProps = { infoId: string };
+export type InfoProps = { infoid: string };
+
+export type Service = {
+  id: number;
+  label: string;
+  fee: number;
+  extras?: Extra[];
+};
+
+export type Extra = {
+  extraid: string;
+  extralabel: string;
+  extrafee: number;
+};
+
+export type Budget = {
+  budgetName: string;
+  customerName: string;
+  services: Service[] | undefined;
+  totalFee: number;
+  date: Date;
+};
