@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { BudgetContext } from "../context/BudgetContext";
+import { BudgetContext } from "../context/budgetContext";
 
 import services from "../data/services.json";
 import Checkbox from "../components/Checkbox";
 import InputExtras from "../components/Inputextras";
+import Summary from "../components/Summary";
 import {
   StyledBackground,
   StyledForm,
@@ -27,6 +28,7 @@ const WebBudget = () => {
     setCustomerName,
     handleBudgetSubmit,
     errorMessage,
+    showSummary,
   } = useContext(BudgetContext);
 
   return (
@@ -96,6 +98,7 @@ const WebBudget = () => {
           </button>
         </SaveBudget>
       </StyledForm>
+      {showSummary && <Summary />}
     </StyledBackground>
   );
 };

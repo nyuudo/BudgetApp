@@ -49,6 +49,8 @@ export type BudgetContextType = {
   handleBudgetSubmit: (e: React.FormEvent) => void;
   budgets: Budget[];
   errorMessage: string;
+  summary: string;
+  showSummary: boolean;
 };
 
 export type ContextProviderProps = {

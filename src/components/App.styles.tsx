@@ -10,7 +10,7 @@ const colors = {
 
 export const StyledBackground = styled.div`
   display: flex;
-  flex-direction: column;
+  //flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -26,6 +26,7 @@ export const StyledWelcome = styled.section`
   padding: 32px;
   background: #e0e0e0;
   box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  mix-blend-mode: multiply;
 
   h1 {
     color: ${colors.primary};
@@ -197,6 +198,20 @@ export const SaveBudget = styled.div`
     gap: 4px;
     font-size: 0.75rem;
     justify-content: center;
+  }
+`;
+
+export const BudgetSummary = styled.div`
+  //z-index: 1;
+  background-color: white;
+  width: 280px;
+  height: 320px;
+  padding: 16px 24px 16px 32px;
+  font-family: "Signika", sans-serif;
+  color: #5b5b5b;
+
+  p {
+    font-size: 0.75rem;
   }
 `;
 

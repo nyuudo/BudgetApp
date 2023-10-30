@@ -20,6 +20,8 @@ export const BudgetContext = createContext<BudgetContextType>({
   setBudgetName: () => {},
   setCustomerName: () => {},
   errorMessage: "",
+  summary: "",
+  showSummary: false,
 });
 
 export const BudgetProvider = ({ children }: ContextProviderProps) => {
@@ -32,20 +34,40 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
     new Array(services.length).fill(false)
   );
 
+  const [selectedServiceId, setSelectedServiceId] = useState<number | null>(
+    null
+  );
+
+  const [showSummary, setShowSummary] = useState(false);
+
+  const extraFeePag =
+    services
+      .flatMap((service) => service.extras)
+      .find((extra) => extra?.extraid === "pages")?.extrafee || 0;
+
+  const extraFeeLang =
+    services
+      .flatMap((service) => service.extras)
+      .find((extra) => extra?.extraid === "languages")?.extrafee || 0;
+
   const calculateTotalFee = useCallback(() => {
-    const extrasPag = numberPages * 30;
-    const extrasLang = numberLang * 30;
+    const extrasPag = numberPages * extraFeePag;
+    const extrasLang = numberLang * extraFeeLang;
     const totalFee = extrasPag + extrasLang + budgetFee;
     setTotalFee(totalFee);
-  }, [numberPages, numberLang, budgetFee, setTotalFee]);
+  }, [
+    numberPages,
+    numberLang,
+    extraFeePag,
+    extraFeeLang,
+    budgetFee,
+    setTotalFee,
+  ]);
 
   useEffect(() => {
     calculateTotalFee();
   }, [numberPages, numberLang, checkBoxState, calculateTotalFee]);
 
-  const [selectedServiceId, setSelectedServiceId] = useState<number | null>(
-    null
-  );
   const checkboxSelectedId = (i: number, checked: boolean) => {
     const currentChecked = checkBoxState.slice();
     currentChecked[i] = checked;
@@ -108,6 +130,7 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
   const [customerName, setCustomerName] = useState("");
   const [budgets, setBudgets] = useState<Budget[]>([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [summary, setSummary] = useState("");
 
   const resetErrorMessage = () => {
     setErrorMessage("");
@@ -116,18 +139,18 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
   const handleBudgetSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (selectedServiceId === null) {
+    if (!checkBoxState.includes(true)) {
       setErrorMessage("At least one service must be selected");
       return;
     }
 
     if (!budgetName) {
-      setErrorMessage("Name Your budget before saving");
+      setErrorMessage("Please, name Your budget before saving");
       return;
     }
 
     if (!customerName) {
-      setErrorMessage("Include your name before saving");
+      setErrorMessage("Please, include your name before saving");
       return;
     }
 
@@ -149,6 +172,9 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
 
     setBudgetName("");
     setCustomerName("");
+    const summary = `Budget Name:${newBudget.budgetName}Customer Name:${newBudget.customerName}Total Fee:${newBudget.totalFee}`;
+    setSummary(summary);
+    setShowSummary(true);
   };
 
   return (
@@ -170,6 +196,8 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
         setBudgetName,
         setCustomerName,
         errorMessage,
+        summary,
+        showSummary,
       }}
     >
       {children}
