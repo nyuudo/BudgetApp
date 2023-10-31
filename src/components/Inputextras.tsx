@@ -21,8 +21,8 @@ const InputExtras = ({
           id={extraid}
           type="text"
           value={value}
-          placeholder="1"
-          min="0"
+          placeholder="0"
+          min="1"
           onChange={handleChange}
         />
         <button onClick={(e) => handleIncrement(e, extraid)}>

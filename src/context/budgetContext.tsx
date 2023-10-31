@@ -20,7 +20,7 @@ export const BudgetContext = createContext<BudgetContextType>({
   setBudgetName: () => {},
   setCustomerName: () => {},
   errorMessage: "",
-  summary: "",
+  newBudget: null,
   showSummary: false,
 });
 
@@ -37,8 +37,6 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
   const [selectedServiceId, setSelectedServiceId] = useState<number | null>(
     null
   );
-
-  const [showSummary, setShowSummary] = useState(false);
 
   const extraFeePag =
     services
@@ -130,7 +128,8 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
   const [customerName, setCustomerName] = useState("");
   const [budgets, setBudgets] = useState<Budget[]>([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const [summary, setSummary] = useState("");
+  const [newBudget, setNewBudget] = useState<Budget | null>(null);
+  const [showSummary, setShowSummary] = useState(false);
 
   const resetErrorMessage = () => {
     setErrorMessage("");
@@ -159,21 +158,23 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
     const selectedServices = services.filter(
       (item, index) => checkBoxState[index]
     );
+    const customerExtrasPag = extraFeePag * numberPages;
+    const customerExtrasLang = extraFeeLang * numberLang;
+    const totalFee = customerExtrasPag + customerExtrasLang + budgetFee;
     const newBudget: Budget = {
       budgetName,
       customerName,
       services: selectedServices,
       totalFee,
-      date: new Date(),
+      customerExtrasPag,
+      customerExtrasLang,
+      budgetDate: new Date(),
     };
-
     setBudgets((prevBudgets) => [...prevBudgets, newBudget]);
     console.log(newBudget);
-
     setBudgetName("");
     setCustomerName("");
-    const summary = `Budget Name:${newBudget.budgetName}Customer Name:${newBudget.customerName}Total Fee:${newBudget.totalFee}`;
-    setSummary(summary);
+    setNewBudget(newBudget);
     setShowSummary(true);
   };
 
@@ -196,7 +197,7 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
         setBudgetName,
         setCustomerName,
         errorMessage,
-        summary,
+        newBudget,
         showSummary,
       }}
     >

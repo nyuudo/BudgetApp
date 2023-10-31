@@ -10,7 +10,6 @@ const colors = {
 
 export const StyledBackground = styled.div`
   display: flex;
-  //flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -97,7 +96,7 @@ export const StyledInputExtras = styled.form<InfoProps>`
 
   label {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     align-content: center;
   }
@@ -121,7 +120,7 @@ export const StyledInputExtras = styled.form<InfoProps>`
     &:before {
       position: absolute;
       display: none;
-      min-width: 114px;
+      min-width: 132px;
       background-color: ${colors.primary};
       color: white;
       padding: 8px;
@@ -130,7 +129,7 @@ export const StyledInputExtras = styled.form<InfoProps>`
       left: 150%;
       bottom: -25%;
       content: "${({ infoid }) =>
-        `Here indicate the number of ${infoid} in your web`}";
+        `Here indicate the number of EXTRA ${infoid} in your web`}";
       font-size: 0.65rem;
       font-family: "Signika", sans-serif;
       font-weight: 300;
@@ -202,15 +201,19 @@ export const SaveBudget = styled.div`
 `;
 
 export const BudgetSummary = styled.div`
-  //z-index: 1;
+  display: flex;
+  flex-direction: column;
+  margin-block-end: 0px;
   background-color: white;
-  width: 280px;
+  width: 240px;
   height: 320px;
   padding: 16px 24px 16px 32px;
   font-family: "Signika", sans-serif;
   color: #5b5b5b;
 
   p {
+    display: block;
+    margin: 0px;
     font-size: 0.75rem;
   }
 `;

@@ -26,33 +26,6 @@ export type LocalStorageValue = [
   React.Dispatch<React.SetStateAction<number>>
 ];
 
-export type BudgetContextType = {
-  totalFee: number;
-  numberPages: number;
-  numberLang: number;
-  checkBoxState: boolean[];
-  setCheckBoxState: React.Dispatch<React.SetStateAction<boolean[]>>;
-  checkboxSelectedId: (i: number, checked: boolean) => void;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleDecrement: (
-    e: React.MouseEvent<HTMLButtonElement>,
-    extraid: string
-  ) => void;
-  handleIncrement: (
-    e: React.MouseEvent<HTMLButtonElement>,
-    extraid: string
-  ) => void;
-  budgetName: string;
-  customerName: string;
-  setBudgetName: React.Dispatch<React.SetStateAction<string>>;
-  setCustomerName: React.Dispatch<React.SetStateAction<string>>;
-  handleBudgetSubmit: (e: React.FormEvent) => void;
-  budgets: Budget[];
-  errorMessage: string;
-  summary: string;
-  showSummary: boolean;
-};
-
 export type ContextProviderProps = {
   children: React.ReactNode;
 };
@@ -77,5 +50,34 @@ export type Budget = {
   customerName: string;
   services: Service[] | undefined;
   totalFee: number;
-  date: Date;
+  customerExtrasPag: number;
+  customerExtrasLang: number;
+  budgetDate: Date;
+};
+
+export type BudgetContextType = {
+  totalFee: number;
+  numberPages: number;
+  numberLang: number;
+  checkBoxState: boolean[];
+  setCheckBoxState: React.Dispatch<React.SetStateAction<boolean[]>>;
+  checkboxSelectedId: (i: number, checked: boolean) => void;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleDecrement: (
+    e: React.MouseEvent<HTMLButtonElement>,
+    extraid: string
+  ) => void;
+  handleIncrement: (
+    e: React.MouseEvent<HTMLButtonElement>,
+    extraid: string
+  ) => void;
+  budgetName: string;
+  customerName: string;
+  setBudgetName: React.Dispatch<React.SetStateAction<string>>;
+  setCustomerName: React.Dispatch<React.SetStateAction<string>>;
+  handleBudgetSubmit: (e: React.FormEvent) => void;
+  budgets: Budget[];
+  errorMessage: string;
+  newBudget: Budget | null;
+  showSummary: boolean;
 };

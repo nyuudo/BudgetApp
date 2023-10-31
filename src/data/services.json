@@ -6,12 +6,12 @@
     "extras": [
       {
         "extraid": "pages",
-        "extralabel": "Number of pages",
+        "extralabel": "Extra pages",
         "extrafee": 30
       },
       {
         "extraid": "languages",
-        "extralabel": "Number of langs",
+        "extralabel": "Extra languages",
         "extrafee": 30
       }
     ]
