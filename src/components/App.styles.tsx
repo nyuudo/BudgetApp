@@ -49,7 +49,11 @@ export const StyledWelcome = styled.section`
 `;
 
 export const StyledForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
+  height: 420px;
   font-family: "Signika", sans-serif;
   border-radius: 16px;
   padding: 16px 32px;
@@ -66,11 +70,6 @@ export const StyledForm = styled.div`
   span {
     color: ${colors.danger};
     font-weight: 700;
-  }
-  hr {
-    border: none;
-    border-top: solid 1px hsla(0, 0%, 0%, 0.16);
-    border-bottom: solid 1px hsla(0, 0%, 100%, 1);
   }
 `;
 
@@ -121,7 +120,7 @@ export const StyledInputExtras = styled.form<InfoProps>`
       position: absolute;
       display: none;
       min-width: 132px;
-      background-color: ${colors.primary};
+      background-color: ${colors.tertiary};
       color: white;
       padding: 8px;
       border-radius: 4px;
@@ -137,7 +136,6 @@ export const StyledInputExtras = styled.form<InfoProps>`
 
     &:hover:before {
       display: block;
-      opacity: 50%;
     }
 
     &:after {
@@ -149,12 +147,11 @@ export const StyledInputExtras = styled.form<InfoProps>`
       transform: translateY(-50%);
       border-width: 5px;
       border-style: solid;
-      border-color: transparent ${colors.primary} transparent transparent;
+      border-color: transparent ${colors.tertiary} transparent transparent;
     }
 
     &:hover:after {
       display: block;
-      opacity: 50%;
     }
   }
 `;
@@ -206,15 +203,64 @@ export const BudgetSummary = styled.div`
   margin-block-end: 0px;
   background-color: white;
   width: 240px;
-  height: 320px;
+  height: 400px;
   padding: 16px 24px 16px 32px;
   font-family: "Signika", sans-serif;
   color: #5b5b5b;
 
-  p {
+  h3 {
+    display: block;
+    margin: 8px 0px;
+  }
+
+  hr {
+    color: #757575;
+    border-top: 2px dotted;
+    border-bottom: none;
+    margin: 0px;
+  }
+
+  div {
     display: block;
     margin: 0px;
     font-size: 0.75rem;
+  }
+
+  .prevbudgets {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .budgetdate {
+    font-size: 0.75rem;
+    margin: 2px;
+    color: #757575;
+    align-self: flex-end;
+  }
+
+  ul {
+    list-style-position: inside;
+    margin: 0;
+    padding-left: 0;
+    color: #757575;
+  }
+
+  ul ul li {
+    padding-left: 1rem;
+  }
+
+  span {
+    position: relative;
+    left: -4px;
+  }
+
+  span.extranumber {
+    left: 0px;
+  }
+
+  .totalbudget {
+    color: black;
+    margin: 8px 0px;
   }
 `;
 

@@ -126,7 +126,10 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
   // Budget Management
   const [budgetName, setBudgetName] = useState("");
   const [customerName, setCustomerName] = useState("");
-  const [budgets, setBudgets] = useState<Budget[]>([]);
+  const [budgets, setBudgets] = useState<Budget[]>(() => {
+    const storedBudgets = JSON.parse(localStorage.getItem("budgets") || "[]");
+    return storedBudgets.slice(0, 2);
+  });
   const [errorMessage, setErrorMessage] = useState("");
   const [newBudget, setNewBudget] = useState<Budget | null>(null);
   const [showSummary, setShowSummary] = useState(false);
@@ -170,12 +173,14 @@ export const BudgetProvider = ({ children }: ContextProviderProps) => {
       customerExtrasLang,
       budgetDate: new Date(),
     };
-    setBudgets((prevBudgets) => [...prevBudgets, newBudget]);
+    const updatedBudgets = [newBudget, ...budgets.slice(0, 1)];
+    setBudgets(updatedBudgets);
     console.log(newBudget);
     setBudgetName("");
     setCustomerName("");
     setNewBudget(newBudget);
     setShowSummary(true);
+    localStorage.setItem("budgets", JSON.stringify(updatedBudgets));
   };
 
   return (

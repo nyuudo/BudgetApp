@@ -67,11 +67,9 @@ const WebBudget = () => {
             </span>
           </div>
         ))}
-        <hr />
         <h2>
           Total Fee: <span>{totalFee}€</span>
         </h2>
-        <hr />
         <SaveBudget>
           <input
             type="text"
