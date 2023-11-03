@@ -5,7 +5,7 @@ import WebBudget from "./pages/WebBudget";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Welcome />} />
+      <Route path="/BudgetApp" element={<Welcome />} />
       <Route path="/budget" element={<WebBudget />} />
     </Routes>
   );
