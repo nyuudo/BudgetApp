@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
-
-// Function to get and set localStorage
-// type as a tuple that will be recognized as a REACT element
-type LocalStorageValue = [number, React.Dispatch<React.SetStateAction<number>>];
+import type { LocalStorageValue } from "../types";
 export const useLocalStorage = (
   key: string,
   defaultValue: number

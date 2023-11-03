@@ -1,29 +1,29 @@
 [
   {
     "id": 0,
-    "label": "Una página web",
+    "label": "A single web page/landing",
     "fee": 500,
     "extras": [
       {
-        "extraid": "pag",
-        "extralabel": "Número de páginas",
-        "extrafee": 30
+        "extraid": "pages",
+        "extralabel": "Extra pages",
+        "extrafee": 60
       },
       {
-        "extraid": "lang",
-        "extralabel": "Número de idiomas",
+        "extraid": "languages",
+        "extralabel": "Extra languages",
         "extrafee": 30
       }
     ]
   },
   {
     "id": 1,
-    "label": "Una consultoría SEO",
-    "fee": 300
+    "label": "A complete SEO audit",
+    "fee": 600
   },
   {
     "id": 2,
-    "label": "Una campaña de Google Ads",
-    "fee": 200
+    "label": "A Google Ads campaign",
+    "fee": 300
   }
 ]
