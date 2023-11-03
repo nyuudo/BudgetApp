@@ -1,13 +1,13 @@
 [
   {
     "id": 0,
-    "label": "A web page",
+    "label": "A single web page/landing",
     "fee": 500,
     "extras": [
       {
         "extraid": "pages",
         "extralabel": "Extra pages",
-        "extrafee": 30
+        "extrafee": 60
       },
       {
         "extraid": "languages",
@@ -18,12 +18,12 @@
   },
   {
     "id": 1,
-    "label": "A SEO audit",
-    "fee": 300
+    "label": "A complete SEO audit",
+    "fee": 600
   },
   {
     "id": 2,
-    "label": "Google Ads campaign",
-    "fee": 200
+    "label": "A Google Ads campaign",
+    "fee": 300
   }
 ]
